@@ -2,22 +2,7 @@
 #include <iostream>
 #include <string>
 #include <map>
-
-struct XY {
-	int x, y;
-
-	XY (int _x, int _y) {
-		x = _x;
-		y = _y;
-	}
-
-	bool operator<(const XY& other) const {
-        if (x == other.x) {
-            return y < other.y;
-        }
-        return x < other.x;
-    }
-};
+#include "structures/Point.h"
 
 static bool isSymbol(char c) {
 	return !std::isdigit(c) && c != '.';
@@ -113,7 +98,7 @@ static void part2() {
 			char c = engine[y].at(x);
 			if (c == '*') {
 
-				std::map<XY, int> adjacent;
+				std::map<Point, int> adjacent;
 
 				for (int ox = -1; ox <= 1; ox++) {
 					for (int oy = -1; oy <= 1; oy++) {
@@ -130,7 +115,7 @@ static void part2() {
 								i0--;
 							}
 
-							XY number = XY(i0, ay);
+							Point number = Point(i0, ay);
 							if (adjacent.find(number) == adjacent.end()) {
 
 								int i1 = ax;
@@ -145,7 +130,7 @@ static void part2() {
 				}
 
 				if (adjacent.size() == 2) {
-					std::map<XY, int>::iterator iter = adjacent.begin();
+					std::map<Point, int>::iterator iter = adjacent.begin();
 					total += iter++->second * iter->second;
 				}
 			}
