@@ -3,6 +3,7 @@
 
 void (*solutions[])(void) = {
     solution01,
+	solution02,
 };
 
 int main(int argc, char* argv[]) {
