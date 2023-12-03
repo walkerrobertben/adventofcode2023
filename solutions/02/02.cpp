@@ -78,7 +78,36 @@ static void part1() {
 }
 
 static void part2() {
+	std::ifstream file("solutions/02/data");
 
+	if (!file.is_open()) {
+		throw std::runtime_error("Failed to open file");
+	}
+
+	std::string line;
+
+	int total = 0;
+
+	while (std::getline(file, line)) {
+		int id = getId(line);
+		int fewest[3] = {0, 0, 0};
+
+		std::vector<std::string> rounds = getRounds(line);
+
+		for (int i = 0; i < rounds.size(); i++) {
+			
+			int cubes[3] = {0, 0, 0};
+			getCubes(rounds[i], cubes);
+
+			for (int j = 0; j < 3; j++) {
+				fewest[j] = std::max(fewest[j], cubes[j]);
+			}
+		}
+
+		total += (fewest[0] * fewest[1] * fewest[2]);
+	}
+
+	std::cout << total << std::endl;
 }
 
 void solution02() {
