@@ -5,6 +5,7 @@ void (*solutions[])(void) = {
     solution01,
 	solution02,
 	solution03,
+	solution04,
 };
 
 int main(int argc, char* argv[]) {
